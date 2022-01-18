@@ -24,8 +24,7 @@ Copyright 2017-2020 JellyWare Inc. All Rights Reserved.
     <div class="contents margin">
         <button id="startNotifications" class="button">Start Notify</button>
         <button id="stopNotifications" class="button">Stop Notify</button>
-		<input id="write_value" class="button" value="up" size="20">
-        <button id="write" class="button">Write</button>
+
         <hr>
         <div id="svg">GRAPH AREA</div>
         <hr>
@@ -50,11 +49,9 @@ Copyright 2017-2020 JellyWare Inc. All Rights Reserved.
 //--------------------------------------------------
 //BlueJellyのインスタンス生成
 const ble = new BlueJelly();
-const ble2 = new BlueJelly();
 
 //TimeSeriesのインスタンス生成
 const ble_data = new TimeSeries();
-
 
 
 //-------------------------------------------------
@@ -85,11 +82,8 @@ function createTimeline() {
 //--------------------------------------------------
 window.onload = function () {
   //UUIDの設定
-  //ble.setUUID("UUID1","4fafc201-1fb5-459e-8fcc-c5c9c331914b","beb5483e-36e1-4688-b7f5-ea07361b26a8");
-  //ble2.setUUID("UUID1","4fafc201-1fb5-459e-8fcc-c5c9c331914b","2049779d-88a9-403a-9c59-c7df79e1dd7c");
-  ble.setUUID("UUID1","dd5f7232-1560-4792-953d-0b2015f15340","8796fa1b-986d-419a-8f84-137710a2354f");//TX　　Service UUID,Characteristic UUID
-  ble2.setUUID("UUID1","dd5f7232-1560-4792-953d-0b2015f15340","1e630bfc-08ca-44c0-a7c5-58dae380884d");//RX　　Service UUID,Characteristic UUID
-  //UUIDの取得方法→Powershellで　[Guid]::NewGuid()　と打つとUUIDが発行される。3回やって、1個目をService UUIDにして2個目と3個目をCharacteristic UUIDにする。
+  ble.setUUID("UUID1","dd5f7232-1560-4792-953d-0b2015f15340","8796fa1b-986d-419a-8f84-137710a2354f");
+
   //smoothie.js
   //createTimeline();
 }
@@ -158,17 +152,6 @@ ble.onRead = function (data, uuid){
 
 
 //--------------------------------------------------
-//Write後の処理
-//--------------------------------------------------
-ble2.onWrite = function(uuid){
-  //document.getElementById('uuid_name').innerHTML = uuid;
-  //document.getElementById('status').innerHTML = "written data"
-}
-
-
-
-
-//--------------------------------------------------
 //Start Notify後の処理
 //--------------------------------------------------
 ble.onStartNotify = function(uuid){
@@ -200,19 +183,6 @@ document.getElementById('startNotifications').addEventListener('click', function
 document.getElementById('stopNotifications').addEventListener('click', function() {
       ble.stopNotify('UUID1');
 });
-
-document.getElementById('write').addEventListener('click', function() {
-  //フォーマットに従って値を変換
-  const textEncoder = new TextEncoder();
-  const text_data = document.getElementById('write_value').value;
-  const text_data_encoded = textEncoder.encode(text_data + '\n');
-
-  //write
-  ble2.write('UUID1', text_data_encoded);
-});
-
-
-
 
 
 var array1 = new Array(100);
