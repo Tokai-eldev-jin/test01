@@ -9,8 +9,8 @@ Copyright 2017-2020 JellyWare Inc. All Rights Reserved.
     <meta name="description" content="BlueJelly">
     <meta name="viewport" content="width=640, maximum-scale=1.0, user-scalable=yes">
     <title>BlueJelly-ESP32  BLE DEMO</title>
-    <!--<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="style.css">-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="bluejelly.js"></script>
     <script type="text/javascript" src="./smoothie.js"></script>
   </head>
@@ -18,7 +18,7 @@ Copyright 2017-2020 JellyWare Inc. All Rights Reserved.
 <body>
 <div class="container">
     <div class="title margin">
-        <font color="orange"> <h4><p id="title">BlueJelly-ESP32  BLE DEMO</p></h4></font>
+        <p id="title">BlueJelly-ESP32  BLE DEMO</p>
     </div>
 
     <div class="contents margin">
@@ -193,8 +193,8 @@ for(let i=0;i<100;i++){
 
 
 function Create_grapf(getdata,getdata1) {
-	let screen_w = 900;
-	let screen_h = 450;
+	let screen_w = 550;
+	let screen_h = 250;
 	let Max_val = 5000;
 	let Min_val = 0;
 	let i=0;
@@ -214,7 +214,7 @@ function Create_grapf(getdata,getdata1) {
 	
 	
 	
-	let display_text="<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='" + screen_h + "' width='" + screen_w + "' viewBox='-80 -10 1000 500' class='SvgFrame'>";
+	let display_text="<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='" + screen_h + "' width='" + screen_w + "' viewBox='-50 -10 600 280' class='SvgFrame'>";
 	display_text = display_text + "<line x1='0' y1='0' x2='" + screen_w + "' y2='0' style='stroke:black;stroke-width:1' />";
 	display_text = display_text + "<line x1='0' y1='" + screen_h + "' x2='" + screen_w + "' y2='" + screen_h + "' style='stroke:black;stroke-width:1' />";
 	display_text = display_text + "<line x1='0' y1='0' x2='0' y2='" + screen_h + "' style='stroke:black;stroke-width:1' />";
