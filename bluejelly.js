@@ -67,7 +67,7 @@ BlueJelly.prototype.scan = function(uuid){
 BlueJelly.prototype.requestDevice = function(uuid) {
   console.log('Execute : requestDevice');
   return navigator.bluetooth.requestDevice({
-      acceptAllDevices: true,
+      filters: [{services: ['dd5f7232-1560-4792-953d-0b2015f15340']}],
       optionalServices: [this.hashUUID[uuid].serviceUUID]})
   .then(device => {
     this.bluetoothDevice = device;
