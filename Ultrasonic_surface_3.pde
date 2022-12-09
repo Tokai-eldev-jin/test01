@@ -187,6 +187,38 @@ void draw() {
   int i=0;
   int m=0;
   int n=0;
+
+
+  //########## シリアルポートのクリア　##########
+  while(port.available()>0){
+    int R=port.read();
+  }
+  //########## シリアルポートのクリア　##########
+  
+  //##########マイコンから計測完了を受け取る ##########
+  //println("hoge");
+  int rrr=0;
+  while(true){
+      delay(10);
+      if(port.available()>=1){
+        rrr=port.read();
+        //println(rrr);
+        break;
+      }
+      //println(port.available());
+  }
+  //##########マイコンから計測完了を受け取る ##########
+  
+ 
+  
+  //########### 閾値をを送る ##########
+  int Sikiichi2=Sikiichi>>>8;
+  port.write((byte)Sikiichi2); //マイコンにデータを送る
+  port.write((byte)Sikiichi); //マイコンにデータを送る
+  //println("hoge3");
+  //########### 閾値をを送る ##########
+  
+  
   
   textFont(myFont2);
   background(150, 255, 255);//light blue　　背景色
@@ -202,7 +234,7 @@ void draw() {
 
    if(focus_flag==0){
      Sikiichi=int(cp5.get(Textfield.class,"Kando").getText()); 
-     println(Sikiichi);
+     //println(Sikiichi);
    }
    //##########　感度のBOX値を読む ##########
    
@@ -252,7 +284,7 @@ void draw() {
     
     
     
-     //##########　タイトルの表示　##########
+    //##########　タイトルの表示　##########
     fill(#ff0000);//red
     textAlign(LEFT);
     textFont(myFont);//サイズ40
@@ -511,24 +543,20 @@ void draw() {
   
   
   
-  //########### 閾値をを送る ##########
-  int Sikiichi2=Sikiichi>>>8;
-  port.write((byte)Sikiichi2); //マイコンにデータを送る
-  port.write((byte)Sikiichi); //マイコンにデータを送る
-  //########### 閾値をを送る ##########
+
  
   
-  //##########マイコンから計測完了を受け取る ##########
-  while(true){
-      delay(1);
-      if(port.available()==1){
-        int rrr=port.read();
-        break;
-      }
+
+
+  
+  //########## シリアルポートのクリア　##########
+  while(port.available()>0){
+    int R=port.read();
   }
-  //##########マイコンから計測完了を受け取る ##########
+  //########## シリアルポートのクリア　##########
   
   
+  //println("hoge2");
   //########## データを受け取る ##########
   n=0;
   for(m=0;m<5;m++){
@@ -540,6 +568,7 @@ void draw() {
       delay(1);
       kazu = port.available();
       if(kazu==Plot_num*2/5) break;
+      //println(kazu);
     }
     //########## データが来るまで待つ ##########
     
